@@ -28,9 +28,10 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
-	compile('com.h2database:h2:1.2.190')
+	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('com.jayway.jsonpath:json-path:2.0.0')
+	compile('mysql:mysql-connector-java:5.1.21')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 

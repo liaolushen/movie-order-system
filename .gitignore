@@ -3,7 +3,8 @@
 ### Java template
 *.class
 build.gradle~
-
+.gradle
+build
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
