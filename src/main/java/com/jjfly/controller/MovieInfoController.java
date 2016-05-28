@@ -22,7 +22,7 @@ public class MovieInfoController {
 
     @RequestMapping(value = "/get-movie-info", method = RequestMethod.GET)
     public @ResponseBody
-    FormatResponse index(@RequestParam("id") long movieId) {
+    FormatResponse index(@RequestParam("movie_id") long movieId) {
         return movieInfoService.getMovieInfo(movieId);
     }
 }

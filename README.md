@@ -31,7 +31,7 @@ http://localhost:8080/api/index/get-movie-list
 }
 ```
 
-## 电影详情接口
+## 电影详情页接口
 
 ### 获取电影详情
 
@@ -39,10 +39,12 @@ http://localhost:8080/api/index/get-movie-list
 + 调用要求：无
 + 方法：GET
 + 请求类型：`application/json`
++ 参数含义：
+`movie_id`：电影的id
 + 调用示例：
 
 ```bash
-http://localhost:8080/api/movie-info/get-movie-info?id=1
+http://localhost:8080/api/movie-info/get-movie-info?movie_id=1
 ```
 + 返回示例
 
@@ -81,5 +83,40 @@ http://localhost:8080/api/movie-info/get-movie-info?id=1
       }
     ]
   }
+}
+```
+
+## 影院列表页接口
+
+### 获取某电影的影院列表
+
++ 接口：`/api/index/get-cinema-list`
++ 调用要求：无
++ 方法：GET
++ 请求类型：`application/json`
++ 参数含义：
+`movie_id`：电影的id
+`viewing_date`：观影日期，格式"yyyy-mm-dd"
++ 调用示例：
+
+```bash
+http://localhost:8080/api/cinema/get-cinema-list?movie_id=1&&viewing_date=2016-05-29
+```
++ 返回示例
+
+```bash
+{
+  "statusCode": 200,
+  "statusInfo": "OK",
+  "data": [
+    {
+      "hasDiscount": true,
+      "cinemaInfo": {
+        "id": 1,
+        "name": "GoGo新天地店",
+        "address": "广州大学城新天地二楼"
+      }
+    }
+  ]
 }
 ```
