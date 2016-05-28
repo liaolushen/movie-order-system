@@ -90,7 +90,7 @@ http://localhost:8080/api/movie-info/get-movie-info?movie_id=1
 
 ### 获取某电影的影院列表
 
-+ 接口：`/api/index/get-cinema-list`
++ 接口：`/api/cinema/get-cinema-list`
 + 调用要求：无
 + 方法：GET
 + 请求类型：`application/json`
@@ -110,6 +110,7 @@ http://localhost:8080/api/cinema/get-cinema-list?movie_id=1&&viewing_date=2016-0
   "statusInfo": "OK",
   "data": [
     {
+      "movieToCinemaId": 1,
       "hasDiscount": true,
       "cinemaInfo": {
         "id": 1,
@@ -118,5 +119,123 @@ http://localhost:8080/api/cinema/get-cinema-list?movie_id=1&&viewing_date=2016-0
       }
     }
   ]
+}
+```
+
+## 场次列表页接口
+
+### 获取场次列表
+
++ 接口：`/api/showtime/get-showtime-list`
++ 调用要求：无
++ 方法：GET
++ 请求类型：`application/json`
++ 参数含义：
+`movie_to_cinema_id`：即之前返回的movieToCinemaId
++ 调用示例：
+
+```bash
+http://localhost:8080/api/showtime/get-showtime-list?movie_to_cinema_id=1
+```
++ 返回示例
+
+```bash
+{
+  "statusCode": 200,
+  "statusInfo": "OK",
+  "data": [
+    {
+      "showtimeId": 1,
+      "startTime": "08:30",
+      "roomType": "3D",
+      "price": 25
+    },
+    {
+      "showtimeId": 2,
+      "startTime": "09:30",
+      "roomType": "3D",
+      "price": 25
+    },
+    {
+      "showtimeId": 3,
+      "startTime": "10:30",
+      "roomType": "3D",
+      "price": 25
+    },
+    {
+      "showtimeId": 4,
+      "startTime": "11:30",
+      "roomType": "3D",
+      "price": 25
+    }
+  ]
+}
+```
+
+## 选座页接口
+
+### 获取场次详情信息
+
++ 接口：`/api/showtime/get-showtime-info`
++ 调用要求：无
++ 方法：GET
++ 请求类型：`application/json`
++ 参数含义：
+`showtime_id`：即之前返回的showtimeId
++ 调用示例：
+
+```bash
+http://localhost:8080/api/showtime/get-showtime-info?showtime_id=1
+```
++ 返回示例
+
+```bash
+{
+  "statusCode": 200,
+  "statusInfo": "OK",
+  "data": {
+    "id": 1,
+    "startTime": "08:30",
+    "roomType": "3D",
+    "price": 25,
+    "row": 10,
+    "col": 10,
+    "seatStatus": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "movieToCinemaId": 1
+  }
+}
+```
+
+### 预定座位
++ 接口：`/api/showtime/reserve`
++ 调用要求：无
++ 方法：POST
++ 请求类型：`application/json`
++ 参数含义：
+`showtime_id`：即之前返回的showtimeId
+`seat_status`：新的座位信息表, 0表示没人，1表示已经有人，2表示选定状态
++ 调用示例：
+
+```bash
+http://localhost:8080/api/showtime/reserve
+
+# 发送的数据
+# showtime_id: 1
+# seat_status: "2200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+```
++ 返回示例
+```bash
+# 订票成功
+{
+  "statusCode": 200,
+  "statusInfo": "OK",
+  "data": null
+}
+
+# 订票失败
+{
+  "statusCode": 400,
+  "statusInfo": "订票失败，座位已经被选",
+  "data": null
 }
 ```

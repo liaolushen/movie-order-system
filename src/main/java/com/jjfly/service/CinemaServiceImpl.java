@@ -33,6 +33,7 @@ public class CinemaServiceImpl implements CinemaService {
         List<MovieToCinema> movieToCinemaList = movieToCinemaRepository.findByMovieIdAndViewingDate(movieId, viewingDate);
         for (MovieToCinema movieToCinemaItem : movieToCinemaList) {
             ModelMap dateItem = new ModelMap();
+            dateItem.addAttribute("movieToCinemaId", movieToCinemaItem.getId());
             dateItem.addAttribute("hasDiscount", movieToCinemaItem.isHasDiscount());
             dateItem.addAttribute("cinemaInfo", cinemaRepository.findOne(movieToCinemaItem.getCinemaId()));
             data.add(dateItem);
