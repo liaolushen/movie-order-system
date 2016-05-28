@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(produces = "application/json; charset=utf-8")
+@RequestMapping(produces = "application/json; charset=utf-8", value = "/api/index")
 public class IndexController {
     private final IndexServiceImpl indexService;
 
@@ -19,9 +19,9 @@ public class IndexController {
         this.indexService = indexService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/get-movie-list", method = RequestMethod.GET)
     public @ResponseBody
-    FormatResponse index(@RequestParam("name") String name) {
-        return indexService.getMovieList(name);
+    FormatResponse index() {
+        return indexService.getMovieList();
     }
 }

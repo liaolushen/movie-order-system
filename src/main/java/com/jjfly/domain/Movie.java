@@ -13,8 +13,7 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
-
+    private long id;
 
     private String imgUrl;
     private String name;
@@ -27,11 +26,11 @@ public class Movie {
 
     protected Movie() {}
 
-    public Movie(String imgUrl, String name, String premiereTime,
+    public Movie(String name, String imgUrl, String premiereTime,
                  String duration, String type, String region,
                  int hot, String description) {
-        this.imgUrl = imgUrl;
         this.name = name;
+        this.imgUrl = imgUrl;
         this.premiereTime = premiereTime;
         this.duration = duration;
         this.type = type;
@@ -48,7 +47,7 @@ public class Movie {
         );
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

@@ -24,17 +24,24 @@ public class IndexServiceImpl implements  IndexService {
     }
 
     @Override
-    public FormatResponse getMovieList(String name) {
-        List<Movie> movieList = repository.findByName(name);
+    public FormatResponse getMovieList() {
+        /**
+         * 返回首页的电影列表
+         */
+        List<Movie> movieList = (List<Movie>) repository.findAll();
         List<ModelMap> data = new ArrayList<>();
         for (Movie movie: movieList) {
             ModelMap dataItem = new ModelMap();
+            dataItem.addAttribute("id", movie.getId());
+            dataItem.addAttribute("imageUrl", movie.getImgUrl());
             dataItem.addAttribute("name", movie.getName());
             dataItem.addAttribute("hot", movie.getHot());
             data.add(dataItem);
         }
         return new FormatResponse(200, "OK", data);
     }
+
+
 
 
 }
