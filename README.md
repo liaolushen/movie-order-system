@@ -1,5 +1,50 @@
 # API接口列表
 
+## 注册接口
+
+### 用户注册
+
++ 接口：`/api/register`
++ 调用要求：无
++ 方法：POST
++ 请求类型：`application/json`
++ 参数含义：
++ 调用示例：
+```bash
+http://localhost:8080/api/register
+
+# 发送的数据
+# username: "lg"
+# password: "helloworld"
+```
++ 返回示例
+
+```bash
+{
+  "statusCode": 200,
+  "statusInfo": "OK",
+  "data": []
+}
+```
+
+## 登录接口
+
+### 用户登录
+
++ 接口：`/api/login`
++ 调用要求：HTTP基本认证
++ 方法：POST
++ 请求类型：`application/json`
++ 参数含义：
++ 调用示例：
+```bash
+http://localhost:8080/api/login
+
+# 发送的数据
+# username: "lg"
+# password: "helloworld"
+```
+
 ## 首页接口
 
 ### 获取电影列表
@@ -208,7 +253,7 @@ http://localhost:8080/api/showtime/get-showtime-info?showtime_id=1
 
 ### 预定座位
 + 接口：`/api/showtime/reserve`
-+ 调用要求：无
++ 调用要求：HTTP基本认证
 + 方法：POST
 + 请求类型：`application/json`
 + 参数含义：
